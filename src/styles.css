@@ -1,0 +1,138 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cream: var(--cream);
+  --color-earth: var(--earth);
+  --color-forest: var(--forest);
+  --color-forest-deep: var(--forest-deep);
+  --color-gold: var(--gold);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--forest-deep) 35%, transparent);
+  --shadow-soft: 0 10px 30px -10px color-mix(in oklab, var(--earth) 25%, transparent);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Brand palette */
+  --forest-deep: oklch(0.32 0.06 150);   /* #1B4332 dark green */
+  --forest: oklch(0.42 0.08 150);
+  --earth: oklch(0.42 0.04 50);          /* warm brown #6B4F4F-ish */
+  --cream: oklch(0.97 0.02 85);          /* light beige */
+  --gold: oklch(0.78 0.13 75);
+
+  --background: oklch(0.985 0.012 85);
+  --foreground: oklch(0.18 0.02 150);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 150);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 150);
+
+  --primary: var(--forest-deep);
+  --primary-foreground: oklch(0.98 0.01 85);
+
+  --secondary: oklch(0.93 0.02 80);
+  --secondary-foreground: var(--forest-deep);
+
+  --muted: oklch(0.94 0.015 80);
+  --muted-foreground: oklch(0.42 0.03 100);
+
+  --accent: var(--gold);
+  --accent-foreground: oklch(0.18 0.02 150);
+
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.88 0.015 80);
+  --input: oklch(0.9 0.015 80);
+  --ring: var(--forest);
+}
+
+.dark {
+  --background: oklch(0.16 0.02 150);
+  --foreground: oklch(0.96 0.01 85);
+  --card: oklch(0.22 0.03 150);
+  --card-foreground: oklch(0.96 0.01 85);
+  --popover: oklch(0.22 0.03 150);
+  --popover-foreground: oklch(0.96 0.01 85);
+  --primary: var(--cream);
+  --primary-foreground: var(--forest-deep);
+  --secondary: oklch(0.28 0.03 150);
+  --secondary-foreground: oklch(0.96 0.01 85);
+  --muted: oklch(0.28 0.03 150);
+  --muted-foreground: oklch(0.7 0.02 85);
+  --accent: var(--gold);
+  --accent-foreground: oklch(0.18 0.02 150);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .bg-grain {
+    background-image:
+      radial-gradient(color-mix(in oklab, var(--forest-deep) 6%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .gradient-forest {
+    background: linear-gradient(135deg, var(--forest-deep) 0%, var(--forest) 100%);
+  }
+  .hover-zoom { overflow: hidden; }
+  .hover-zoom img { transition: transform 700ms cubic-bezier(.2,.7,.2,1); }
+  .hover-zoom:hover img { transform: scale(1.06); }
+  .reveal {
+    animation: reveal-up 0.8s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes reveal-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fade-in 0.6s ease-out both; }
+  @keyframes fade-in { from {opacity:0} to {opacity:1} }
+}
