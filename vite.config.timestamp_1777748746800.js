@@ -1,29 +1,23 @@
+// vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
-import { fileURLToPath } from "url";
-
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
-
-export default defineConfig({
+var vite_config_default = defineConfig({
   plugins: [
     tanstackStart(),
     react(),
     tailwindcss(),
-    tsconfigPaths(),
+    tsconfigPaths()
   ],
   resolve: {
     alias: {
-      "@/routeTree.gen": path.resolve(__dirname, "./src/routeTree.gen.ts"),
-    },
-  },
+      "@/routeTree.gen": path.resolve(__dirname, "./src/routeTree.gen.ts")
+    }
+  }
 });
-
-
-
-
-
-
+export {
+  vite_config_default as default
+};
